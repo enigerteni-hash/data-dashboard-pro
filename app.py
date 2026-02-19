@@ -1133,8 +1133,9 @@ def main():
     # Footer
     st.markdown("---")
     st.markdown(
-        "<div style='text-align:center; color:#adb5bd; padding:1rem;'>"
-        "📊 Data Dashboard Pro | Creato con Streamlit & Plotly"
+        "<div style='text-align:center; padding:1rem;'>"
+        "<p style='color:#adb5bd; margin-bottom:0.3rem;'>📊 Data Dashboard Pro | Creato con Streamlit & Plotly</p>"
+        "<p style='color:#6c757d; font-size:0.95rem; font-weight:500;'>Krijuar nga Enigert Hasanllari</p>"
         "</div>",
         unsafe_allow_html=True
     )
