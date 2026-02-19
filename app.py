@@ -1020,6 +1020,7 @@ def main():
     <div style="text-align: center; padding: 1rem 0;">
         <h1 style="color: #4361ee; margin-bottom: 0.2rem;">📊 Data Dashboard Pro</h1>
         <p style="color: #6c757d; font-size: 1.1rem;">Analizza i tuoi dati Excel e CSV con grafici professionali</p>
+        <p style="color: #495057; font-size: 0.9rem; margin-top: 0.5rem; font-weight: 500;">Krijuar nga Enigert Hasanllari</p>
     </div>
     """, unsafe_allow_html=True)
 
