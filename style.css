@@ -63,19 +63,11 @@
     line-height: 1.5;
 }
 
-/* Sidebar Styling */
+/* Sidebar Styling
+   Colori base (sfondo, testo, etichette, uploader) definiti in
+   .streamlit/config.toml -> [theme.sidebar], cosi' ogni widget li eredita. */
 [data-testid="stSidebar"] {
     background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
-}
-
-[data-testid="stSidebar"] .stMarkdown h2,
-[data-testid="stSidebar"] .stMarkdown h3 {
-    color: #ffffff !important;
-}
-
-[data-testid="stSidebar"] .stMarkdown p,
-[data-testid="stSidebar"] .stMarkdown label {
-    color: #ced4da !important;
 }
 
 [data-testid="stSidebar"] hr {
