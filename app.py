@@ -250,7 +250,7 @@ def render_sidebar():
 
         # File di esempio
         st.markdown("---")
-        if st.button("📥 Genera dati di esempio", use_container_width=True):
+        if st.button("📥 Genera dati di esempio", width='stretch'):
             sample_df = generate_sample_data()
             st.session_state['sample_data'] = sample_df
             st.success("Dati di esempio caricati!")
@@ -459,7 +459,7 @@ def render_bar_chart(df, numeric_cols, categorical_cols, date_cols):
         xaxis=dict(showgrid=False),
         yaxis=dict(showgrid=True, gridcolor="rgba(0,0,0,0.1)")
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
 
 
 def render_line_chart(df, numeric_cols, categorical_cols, date_cols):
@@ -506,7 +506,7 @@ def render_line_chart(df, numeric_cols, categorical_cols, date_cols):
         plot_bgcolor="rgba(0,0,0,0)",
         hovermode="x unified"
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
 
 
 def render_scatter_chart(df, numeric_cols, categorical_cols):
@@ -546,7 +546,7 @@ def render_scatter_chart(df, numeric_cols, categorical_cols):
         fig = px.scatter(df, **kwargs, opacity=0.7, trendline="ols")
         fig.update_layout(height=500, font=dict(family="Segoe UI", size=12))
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
 
 
 def render_pie_chart(df, numeric_cols, categorical_cols):
@@ -577,7 +577,7 @@ def render_pie_chart(df, numeric_cols, categorical_cols):
         height=500,
         font=dict(family="Segoe UI", size=12)
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
 
 
 def render_heatmap(df, numeric_cols):
@@ -611,7 +611,7 @@ def render_heatmap(df, numeric_cols):
         font=dict(family="Segoe UI", size=12),
         title="Matrice di Correlazione"
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
 
 
 # ============================================================
@@ -650,13 +650,13 @@ def render_data_table(df):
     # Mostra tabella
     st.dataframe(
         display_df.head(n_rows),
-        use_container_width=True,
+        width='stretch',
         height=400
     )
 
     # Statistiche descrittive
     with st.expander("📊 Statistiche Descrittive"):
-        st.dataframe(df.describe().round(2), use_container_width=True)
+        st.dataframe(df.describe().round(2), width='stretch')
 
 
 # ============================================================
@@ -688,7 +688,7 @@ def render_advanced_charts(df, numeric_cols, categorical_cols, date_cols):
                                    color_discrete_sequence=["#4361ee"])
 
             fig.update_layout(height=450, font=dict(family="Segoe UI", size=12))
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
 
     with tab2:
         if numeric_cols and categorical_cols:
@@ -702,7 +702,7 @@ def render_advanced_charts(df, numeric_cols, categorical_cols, date_cols):
                          color=box_x, color_discrete_sequence=px.colors.qualitative.Set2)
             fig.update_layout(height=450, font=dict(family="Segoe UI", size=12),
                               showlegend=False)
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
         else:
             st.info("Servono colonne numeriche e categoriche per il box plot.")
 
@@ -727,7 +727,7 @@ def render_advanced_charts(df, numeric_cols, categorical_cols, date_cols):
                               color_discrete_sequence=["#4361ee"])
 
             fig.update_layout(height=450, font=dict(family="Segoe UI", size=12))
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
         else:
             st.info("Serve almeno una colonna data e una numerica per l'area chart.")
 
@@ -805,7 +805,7 @@ def render_ore_pagate_section(df):
             st.metric("Media Ore/Utente", f"{summary['Totale Ore Pagate'].mean():.1f}")
 
         # Tabella dettagliata
-        st.dataframe(summary, use_container_width=True, hide_index=True, height=400)
+        st.dataframe(summary, width='stretch', hide_index=True, height=400)
 
         # Grafico a barre: ore per utente
         st.markdown("#### 📊 Ore Pagate per Utente")
@@ -821,7 +821,7 @@ def render_ore_pagate_section(df):
         )
         fig.update_traces(textposition='outside')
         fig.update_layout(height=450, font=dict(family="Segoe UI", size=12))
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
 
         # Grafico per giorno
         st.markdown("#### 📅 Ore Pagate per Giorno")
@@ -837,7 +837,7 @@ def render_ore_pagate_section(df):
         )
         fig2.update_traces(textposition='outside')
         fig2.update_layout(height=450, font=dict(family="Segoe UI", size=12))
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width='stretch')
 
         # Scarica riepilogo
         csv_summary = summary.to_csv(index=False).encode('utf-8')
@@ -846,7 +846,7 @@ def render_ore_pagate_section(df):
             data=csv_summary,
             file_name=f"ore_pagate_riepilogo_{datetime.now().strftime('%Y%m%d')}.csv",
             mime='text/csv',
-            use_container_width=True
+            width='stretch'
         )
 
         # Cleanup colonna temporanea
@@ -865,7 +865,7 @@ def render_ore_pagate_section(df):
         with col2:
             st.metric("Utenti Unici", f"{df[user_col].nunique():,}")
 
-        st.dataframe(ore_per_user, use_container_width=True, hide_index=True)
+        st.dataframe(ore_per_user, width='stretch', hide_index=True)
 
     else:
         # Solo colonna ore pagate, senza user fid
@@ -889,7 +889,7 @@ def render_export_section(df):
             data=csv,
             file_name=f"dashboard_export_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
             mime='text/csv',
-            use_container_width=True
+            width='stretch'
         )
 
     with col2:
@@ -902,7 +902,7 @@ def render_export_section(df):
             data=excel_data,
             file_name=f"dashboard_export_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx",
             mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-            use_container_width=True
+            width='stretch'
         )
 
     with col3:
@@ -912,7 +912,7 @@ def render_export_section(df):
             data=json_data,
             file_name=f"dashboard_export_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
             mime='application/json',
-            use_container_width=True
+            width='stretch'
         )
 
 
@@ -983,7 +983,7 @@ def render_merge_section(df1, df2):
     suffix_r = "_file2"
 
     # Esegui merge
-    if st.button("🚀 Esegui Merge", use_container_width=True, type="primary", key="btn_merge"):
+    if st.button("🚀 Esegui Merge", width='stretch', type="primary", key="btn_merge"):
         try:
             if merge_on and len(merge_on) > 0:
                 merged = pd.merge(df1, df2, on=merge_on, how=merge_type, suffixes=(suffix_l, suffix_r))
@@ -1003,7 +1003,7 @@ def render_merge_section(df1, df2):
     # Ritorna il risultato
     if 'merged_df' in st.session_state:
         st.markdown("**Anteprima merge (prime 5 righe):**")
-        st.dataframe(st.session_state['merged_df'].head(), use_container_width=True)
+        st.dataframe(st.session_state['merged_df'].head(), width='stretch')
         return st.session_state['merged_df']
 
     st.info("👆 Configura le opzioni e premi **Esegui Merge** per unire i file.")
@@ -1075,7 +1075,7 @@ def main():
         with col2:
             st.markdown("""
             <div class="feature-card">
-                <h3>� Merge File</h3>
+                <h3>🔗 Merge File</h3>
                 <p>Carica 2 file e uniscili con merge automatico sulle colonne in comune</p>
             </div>
             """, unsafe_allow_html=True)
@@ -1119,7 +1119,7 @@ def main():
             'Non-Null': filtered_df.notna().sum().values,
             'Null (%)': (filtered_df.isna().sum() / max(len(filtered_df), 1) * 100).round(1).values
         })
-        st.dataframe(dtypes_df, use_container_width=True, hide_index=True)
+        st.dataframe(dtypes_df, width='stretch', hide_index=True)
 
     # Sezione Ore Pagate (se presente)
     render_ore_pagate_section(filtered_df)
